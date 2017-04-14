@@ -1,27 +1,27 @@
 {
-	"name": "r0secode",
-	"homepage": "https://isar0se.github.io/r0secode",
-	"version": "0.1.0",
-	"private": true,
-	"devDependencies": {
-		"gh-pages": "^0.12.0",
-		"react-scripts": "0.9.5"
-	},
-	"dependencies": {
-		"bootstrap": "^3.3.7",
-		"prop-types": "^15.5.8",
-		"react": "^15.5.4",
-		"react-async-loader": "^0.1.2",
-		"react-dom": "^15.5.4",
-		"react-modal": "^1.7.6",
-		"store": "^2.0.4"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build",
-		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
-	}
+  "name": "r0secode",
+  "homepage": "https://isar0se.github.io/r0secode",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^0.12.0",
+    "react-scripts": "0.9.5"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-async-loader": "^0.1.2",
+    "react-dom": "^15.5.4",
+    "react-modal": "^1.7.6",
+    "store": "^2.0.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }
