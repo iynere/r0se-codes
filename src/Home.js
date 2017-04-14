@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import {Resume} from './Resume'
 import store from 'store'
-// import {Button, Header, Icon, Modal} from 'semantic-ui-react'
 import StreetViewWrapper from './StreetViewWrapper'
-// import {ResumeModal} from './ResumeModal'
-// import resume from './Rose Kaplan-Bomberg resume.pdf'
 
 export default class extends Component {
   
@@ -24,13 +21,7 @@ export default class extends Component {
     this.handleClose = this.handleClose.bind(this)
   }
   
-  componentDidMount() {
-    // console.log('POS/POV', window.localStorage)
-  }
-  
   handleOpen(event) {
-    console.log("jfjfhhddd")
-    console.log(this.state)
     this.setState({
       modalOpen: true
     })
@@ -45,18 +36,9 @@ export default class extends Component {
   render() {
     
     let height = window.innerHeight / 100
-      // width = window.innerWidth / 100
-    // if (!store.get('lat')) {
-      // store.set('lat', 42.33190186338266)
-      // store.set('lng', -77.32427707095837)
-      // store.set('heading', 108.8005664196165)
-      // store.set('pitch', -14.05716232745283)
-      // store.set('zoom', 0)
-    // }
     
     // see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanoramaOptions
     let streetViewPanoramaOptions = {
-      // look into disableDefaultUI, motionTracking, 
       disableDefaultUI: true,
       position: {
         lat: this.state.lat,
@@ -83,62 +65,63 @@ export default class extends Component {
         </h2>
         
         {/* LINKS */}
-        <div style={{float: 'right', color: 'black', fontStyle: 'italic', marginBottom: 0, marginRight: 3.5*height, marginTop: 4.5*height}}>
-          <h4 style={{float: 'right', color: 'black', fontWeight: 400, background: '#6495ED', marginTop: 0, marginBottom: 0}}>
+        <div style={{float: 'right', fontStyle: 'italic', marginBottom: 0, marginRight: 3.5*height, marginTop: 4.5*height}}>
+          <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0}}>
             <a style={{color: '#f0f0f0'}} href='mailto://rose.kaplan.bomberg@gmail.com'>email</a>
           </h4>
         
-          <h4 style={{float: 'right', color: 'black', fontWeight: 400, background: '#6495ED', marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
-            <a style={{color: '#f0f0f0'}} href='/' target='blank' onClick={event => {
+          <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
+            <span className='resume' style={{color: '#f0f0f0'}} href='/' target='blank' onClick={event => {
               event.preventDefault()
               this.setState({
                 modalOpen: true
               })
-            }}>resume</a>
+            }}>resume</span>
           </h4>
           
-          <h4 style={{float: 'right', color: 'black', fontWeight: 400, background: '#6495ED', marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
+          <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <a style={{color: '#f0f0f0'}} href='https://angel.co/rose-kaplan-bomberg' target='blank'>angelist</a>
           </h4>
           
-          <h4 style={{float: 'right', color: 'black', fontWeight: 400, background: '#6495ED', marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
+          <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <a style={{color: '#f0f0f0'}} href='https://linkedin.com/in/rose-kaplan-bomberg' target='blank'>linkedin</a>
           </h4>
           
-          <h4 style={{float: 'right', color: 'black', fontWeight: 400, background: '#6495ED', marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
+          <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <a style={{color: '#f0f0f0'}} href='https://github.com/isar0se' target='blank'>github</a>
           </h4>
         </div>
         
-          <h3 style={{position: 'absolute', bottom: 4*height, marginLeft: 3*height, marginBottom: 0, marginTop: 0, color: 'black', fontWeight: 400, background: '#7359E1'}}>
-            nyc software engineer / fullstack developer
-          </h3>
+        {/* ABOUT */}
+        <h3 style={{position: 'absolute', bottom: 4*height, marginLeft: 3*height, marginBottom: 0, marginTop: 0, color: 'black', fontWeight: 400, background: '#7359E1'}}>
+          nyc software engineer / fullstack developer
+        </h3>
         
         <Resume 
           isOpen={this.state.modalOpen}
           onRequestClose={this.handleClose}
           style={{
             overlay: {
-              position          : 'fixed',
-              top               : 0,
-              left              : 0,
-              right             : 0,
-              bottom            : 0,
-              backgroundColor   : 'rgba(0, 0, 0, 0)'
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0)'
             },
             content: {
-              position                   : 'absolute',
-              top                        : 3*height,
-              left                       : 3*height,
-              right                      : 3*height,
-              bottom                     : 3*height,
-              border                     : '0',
-              background                 : '#fff',
-              overflow                   : 'auto',
-              WebkitOverflowScrolling    : 'touch',
-              borderRadius               : '0',
-              outline                    : 'none',
-              padding                    : '0'
+              position: 'absolute',
+              top: 3*height,
+              left: 3*height,
+              right: 3*height,
+              bottom: 3*height,
+              border: '0',
+              background: '#fff',
+              overflow: 'auto',
+              WebkitOverflowScrolling: 'touch',
+              borderRadius: '0',
+              outline: 'none',
+              padding: '0'
             }
           }}
         />
@@ -154,21 +137,20 @@ export default class extends Component {
           <StreetViewWrapper
             streetViewPanoramaOptions={streetViewPanoramaOptions}
             onPositionChanged={event => {
-              // store.set('lat', event.lat())
-              // store.set('lng', event.lng())
-              console.log({lat: event.lat(), lng: event.lng()})
+              console.log('POS', {
+                lat: event.lat(),
+                lng: event.lng()
+              })
             }}
             onPovChanged={event => {
-              // store.set('heading', event.heading)
-              // store.set('pitch', event.pitch)
-              // store.set('zoom', event.zoom)
-              console.log(event)
+              console.log('POV', {
+                heading: event.heading,
+                pitch: event.pitch,
+                zoom: event.zoom
+              })
             }}
-            handleMeClick={event => {}}
-            handleSomethingClick={event => {
-              // console.log(event)
-              this.randomLocation(store.get('lat'), store.get('lng'))
-            }}
+            // handleMeClick={event => {}}
+            // handleSomethingClick={event => {}}
           />
         </div>
       </div>
