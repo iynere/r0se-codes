@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 import {Resume} from './Resume'
 import store from 'store'
+import {receivePos, receivePov} from './reducer'
 import StreetViewWrapper from './StreetViewWrapper'
 
-export default class extends Component {
+class Home extends Component {
   
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     
     this.state = {
       modalOpen: false,
@@ -21,6 +23,10 @@ export default class extends Component {
     this.handleClose = this.handleClose.bind(this)
   }
   
+  componentDidMount() {
+    console.log(this.props)
+  }
+  
   handleOpen(event) {
     this.setState({
       modalOpen: true
@@ -33,35 +39,85 @@ export default class extends Component {
     })
   }
   
-  render() {
-    
+  renderStreetView() {
     let height = window.innerHeight / 100
     
     // see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanoramaOptions
     let streetViewPanoramaOptions = {
       disableDefaultUI: true,
       position: {
-        lat: this.state.lat,
-        lng: this.state.lng
+        lat: this.props.location.lat,
+        lng: this.props.location.lng
       },
       pov: {
-        heading: this.state.heading,
-        pitch: this.state.pitch
+        heading: this.props.location.heading,
+        pitch: this.props.location.pitch
       },
-      zoom: this.state.zoom,
+      zoom: this.props.location.zoom,
       addressControl: false,
       fullscreenControl: false,
       scrollwheel: false,
       showRoadLabels: false,
       zoomControl: false
     }
+    return (
+      <div style={{
+        width: window.innerWidth,
+        height: window.innerHeight + 10*height,
+        position: 'fixed',
+        top: '0px',
+        left: '0px',
+        zIndex: -5}}>
+        <StreetViewWrapper
+          streetViewPanoramaOptions={streetViewPanoramaOptions}
+          onPositionChanged={event => {
+            let pos = {
+              lat: event.lat(),
+              lng: event.lng()
+            }
+            
+            this.props.receivePos(pos)
+            // console.log('POS', pos)
+          }}
+          onPovChanged={event => {
+            let pov = {
+              heading: event.heading,
+              pitch: event.pitch,
+              zoom: event.zoom
+            }
+            
+            this.props.receivePov(pov)
+            // console.log('POV', pov)
+          }}
+          // handleMeClick={event => {}}
+          // handleSomethingClick={event => {}}
+        />
+      </div>
+    )
+  }
+  
+  render() {
+    
+    let height = window.innerHeight / 100
+    
+    // see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanoramaOptions
 
     return (
       <div>
       
         {/* HEADER */}
         <h2 style={{float: 'left', color: 'black', fontWeight: 500, fontStyle: 'italic', background: '#E8C1DB', marginLeft: 3*height, marginBottom: 0, marginTop: 4.5*height, clear: 'both'}}>
-          r 0 s e . c o d e s
+          <span onClick={evt => {
+            this.props.receivePos({
+              lat: 42.33190186338266,
+              lng: -77.32427707095837
+            })
+            this.props.receivePov({
+              heading: 107.36538560099282,
+              pitch: -13.943844201508199,
+              zoom: 0.38773015328310856
+            })
+          }}>r 0 s e . c o d e s</span>
         </h2>
         
         {/* LINKS */}
@@ -88,7 +144,7 @@ export default class extends Component {
           </h4>
           
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
-            <a style={{color: '#f0f0f0'}} href='https://github.com/isar0se' target='blank'>github</a>
+            <a style={{color: '#f0f0f0'}} href='https://github.com/iynere' target='blank'>github</a>
           </h4>
         </div>
         
@@ -127,33 +183,19 @@ export default class extends Component {
         />
         
         {/* STREET VIEW */}
-        <div style={{
-          width: window.innerWidth,
-          height: window.innerHeight + 10*height,
-          position: 'fixed',
-          top: '0px',
-          left: '0px',
-          zIndex: -5}}>
-          <StreetViewWrapper
-            streetViewPanoramaOptions={streetViewPanoramaOptions}
-            onPositionChanged={event => {
-              console.log('POS', {
-                lat: event.lat(),
-                lng: event.lng()
-              })
-            }}
-            onPovChanged={event => {
-              console.log('POV', {
-                heading: event.heading,
-                pitch: event.pitch,
-                zoom: event.zoom
-              })
-            }}
-            // handleMeClick={event => {}}
-            // handleSomethingClick={event => {}}
-          />
-        </div>
+        {this.props.location ? this.renderStreetView() : null}
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  location: state
+})
+
+const mapDispatchToProps = dispatch => ({
+  receivePos: pos => dispatch(receivePos(pos)),
+  receivePov: pov => dispatch(receivePov(pov))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
