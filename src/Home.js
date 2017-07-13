@@ -123,7 +123,7 @@ class Home extends Component {
         {/* LINKS */}
         <div style={{float: 'right', fontStyle: 'italic', marginBottom: 0, marginRight: 3.5*height, marginTop: 4.5*height}}>
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0}}>
-            <a style={{color: '#f0f0f0'}} href='mailto://rose.kaplan.bomberg@gmail.com'>email</a>
+            <a style={{color: '#f0f0f0'}} href='mailto:rose.kaplan.bomberg@gmail.com'>email</a>
           </h4>
         
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
