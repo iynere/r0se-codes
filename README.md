@@ -4,6 +4,8 @@ welcome 2 my home page
 
 ## in-progress
 
+/resume should load the pdf....
+
 would love to add some more images, have them render in 3d via three.js, more hidden features, randomized streetview locations, explore what else i can do with gmaps along these lines:
 
 - http://inear.se/urbanjungle
