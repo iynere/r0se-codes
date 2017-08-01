@@ -1,6 +1,6 @@
 # [r0se.codes](http://r0se.codes)
 
-welcome 2 my home page
+welcone 2 my home page
 
 ## in-progress
 
