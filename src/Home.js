@@ -6,27 +6,27 @@ import {receivePos, receivePov} from './reducer'
 import StreetViewWrapper from './StreetViewWrapper'
 
 class Home extends Component {
-  
+
   constructor(props) {
     super(props)
-    
+
     this.state = {
       modalOpen: false,
-      lat: store.get('lat') || 42.33190186338266,
-      lng: store.get('lng') || -77.32427707095837,
-      heading: store.get('heading') || 107.36538560099282,
-      pitch: store.get('pitch') || -13.943844201508199,
-      zoom: store.get('zoom') || 0.38773015328310856
+      lat: store.get('lat') || 36.13453080061456,
+      lng: store.get('lng') || -115.87314364690837,
+      heading: store.get('heading') || 2.1718819403514487,
+      pitch: store.get('pitch') || 3.316408921989364,
+      zoom: store.get('zoom') || 0.4611096022661806
     }
-  
+
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
   }
-  
+
   componentDidMount() {
     console.log(this.props)
   }
-  
+
   handleOpen(event) {
     this.setState({
       modalOpen: true
@@ -38,10 +38,10 @@ class Home extends Component {
       modalOpen: false
     })
   }
-  
+
   renderStreetView() {
     let height = window.innerHeight / 100
-    
+
     // see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanoramaOptions
     let streetViewPanoramaOptions = {
       disableDefaultUI: true,
@@ -75,7 +75,7 @@ class Home extends Component {
               lat: event.lat(),
               lng: event.lng()
             }
-            
+
             this.props.receivePos(pos)
             // console.log('POS', pos)
           }}
@@ -85,7 +85,7 @@ class Home extends Component {
               pitch: event.pitch,
               zoom: event.zoom
             }
-            
+
             this.props.receivePov(pov)
             // console.log('POV', pov)
           }}
@@ -95,16 +95,16 @@ class Home extends Component {
       </div>
     )
   }
-  
+
   render() {
-    
+
     let height = window.innerHeight / 100
-    
+
     // see https://developers.google.com/maps/documentation/javascript/3.exp/reference#StreetViewPanoramaOptions
 
     return (
       <div>
-      
+
         {/* HEADER */}
         <h2 style={{float: 'left', color: 'black', fontWeight: 500, fontStyle: 'italic', background: '#E8C1DB', marginLeft: 3*height, marginBottom: 0, marginTop: 4.5*height, clear: 'both'}}>
           <span onClick={evt => {
@@ -119,13 +119,13 @@ class Home extends Component {
             })
           }}>r 0 s e . c o d e s</span>
         </h2>
-        
+
         {/* LINKS */}
         <div style={{float: 'right', fontStyle: 'italic', marginBottom: 0, marginRight: 3.5*height, marginTop: 4.5*height}}>
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0}}>
             <a style={{color: '#f0f0f0'}} href='mailto:rose.kaplan.bomberg@gmail.com'>email</a>
           </h4>
-        
+
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <span className='resume' style={{color: '#f0f0f0'}} href='/' target='blank' onClick={event => {
               event.preventDefault()
@@ -134,26 +134,26 @@ class Home extends Component {
               })
             }}>resume</span>
           </h4>
-          
+
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <a style={{color: '#f0f0f0'}} href='https://angel.co/rose-kaplan-bomberg' target='blank'>angelist</a>
           </h4>
-          
+
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <a style={{color: '#f0f0f0'}} href='https://linkedin.com/in/rose-kaplan-bomberg' target='blank'>linkedin</a>
           </h4>
-          
+
           <h4 style={{float: 'right', background: '#6495ED', fontWeight: 400, marginTop: 0, marginBottom: 0, marginRight: 1.5*height}}>
             <a style={{color: '#f0f0f0'}} href='https://github.com/iynere' target='blank'>github</a>
           </h4>
         </div>
-        
+
         {/* ABOUT */}
         <h3 style={{position: 'absolute', bottom: 4*height, marginLeft: 3*height, marginBottom: 0, marginTop: 0, color: 'black', fontWeight: 400, background: '#7359E1'}}>
           nyc software engineer / fullstack developer
         </h3>
-        
-        <Resume 
+
+        <Resume
           isOpen={this.state.modalOpen}
           onRequestClose={this.handleClose}
           style={{
@@ -181,7 +181,7 @@ class Home extends Component {
             }
           }}
         />
-        
+
         {/* STREET VIEW */}
         {this.props.location ? this.renderStreetView() : null}
       </div>

@@ -9,27 +9,27 @@ class StreetView extends Component {
     super()
     this.streetView = null
   }
-  
+
   initialize(canvas) {
     if (this.props.googleMaps && this.streetView == null) {
       this.streetView = new this.props.googleMaps.StreetViewPanorama(
         canvas,
         this.props.streetViewPanoramaOptions
       )
-      
+
         this.me = new this.props.googleMaps.Marker({
-         position: {lat: 42.33210188081151, lng: -77.3247444475864},
+         position: {lat: 36.13410410224819, lng: -115.8731357052788},
          icon: `${process.env.PUBLIC_URL}/r0se.png`,
          optimized: false
         })
-        
+
         this.something = new this.props.googleMaps.Marker({
-         position: {lat: 42.33169955193434, lng: -77.32380538313623},
+         position: {lat: 36.13482767311607, lng: -115.87315036548631},
          icon: `${process.env.PUBLIC_URL}/window.png`,
          optimized: false,
          opacity: 0.6
         })
-        
+
         this.me.setMap(this.streetView)
         this.something.setMap(this.streetView)
 
@@ -37,7 +37,7 @@ class StreetView extends Component {
         alert(`hi you found me`)
         // this.props.handleMeClick(event)
       })
-      
+
       this.something.addListener('click', event => {
         alert(`this doesn't do anything yet\n\ntry moving out & up to your left tho\n\nor look behind you`)
         // this.props.handleSomethingClick(event)
@@ -64,13 +64,13 @@ class StreetView extends Component {
   componentDidUpdate () {
     this.initialize(ReactDOM.findDOMNode(this))
   }
-  
+
   componentWillUnmount () {
     if (this.streetView) {
       this.props.googleMaps.event.clearInstanceListeners(this.streetView)
     }
   }
-  
+
   render () {
     return <div
       style={{height: '100%'}}
