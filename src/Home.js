@@ -14,9 +14,9 @@ class Home extends Component {
       modalOpen: false,
       lat: store.get('lat') || 36.13453080061456,
       lng: store.get('lng') || -115.87314364690837,
-      heading: store.get('heading') || 2.1718819403514487,
-      pitch: store.get('pitch') || 3.316408921989364,
-      zoom: store.get('zoom') || 0.4611096022661806
+      heading: store.get('heading') || 164.50346327660162,
+      pitch: store.get('pitch') || 80.18992591507154,
+      zoom: store.get('zoom') || 0.46110960226618036
     }
 
     this.handleOpen = this.handleOpen.bind(this)
